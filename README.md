@@ -50,6 +50,8 @@ Simulate the motion of a cube after it hits the ground by impulse-based collisio
 
 以碰撞点集合中碰撞点任意的顺序来对接触冲量进行求解，如果要一次性分析时间复杂度很高，用这种近似的方式可能有误差，因此多次迭代，最终可以趋近理想结果
 
+<br>
+
 - 碰撞点集
 
   - 如果每次只处理一个碰撞点，那么在每一帧都有新的旋转量，导致持续不断的抖动，类似于长尾效应
@@ -151,12 +153,14 @@ void update_point(Vector3f origin) {
 
 - 作用重力
 
+首先施加重力，得到更新后的速度
+
 ```c++
 // apply gravity
 cube_physics->resolve_gravity();
 ```
 
-首先施加重力，得到更新后的速度
+<br>
 
 - 碰撞检测
 
