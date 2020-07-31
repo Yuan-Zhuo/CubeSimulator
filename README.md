@@ -2,6 +2,8 @@
 
 Simulate the motion of a cube after it hits the ground by impulse-based collision response.
 
+<br><br>
+
 ## 项目结构
 
 | 文件               | 内容                             |
@@ -10,6 +12,8 @@ Simulate the motion of a cube after it hits the ground by impulse-based collisio
 | PhysicsState.hpp   | 数据结构，如运动属性、碰撞点集等 |
 | PhysicsSim.hpp     | 模拟运动                         |
 | Cube.cpp           | 在 unreal 中展示                 |
+
+<br><br>
 
 ## 物理理论
 
@@ -29,6 +33,8 @@ Simulate the motion of a cube after it hits the ground by impulse-based collisio
 </center>
 
 根据当前的速度、碰撞点位置以及相对位置可以计算出冲量大小
+
+<br>
 
 - 连续冲量
   - [ErinCatto - UnderstandingConstraints_GDC2014](https://box2d.org/files/ErinCatto_UnderstandingConstraints_GDC2014.pdf)
@@ -80,6 +86,8 @@ uint32_t get_remove_idx(uint32_t deepest_idx, Vector3f& hit_point) {
 }
 ```
 
+<br>
+
 - 旋转
 
 在计算出角速度后，以下流程更新物体的 quaternion，逻辑是得到角速度在 delta_time 转过的角度 angle，以及角速度的方向 axis，得到在 delta_time 的朝向改变，然后相乘即得到新的朝向
@@ -109,6 +117,8 @@ inline void cal_point_location(ActorState* actor_state,
 }
 ```
 
+<br><br>
+
 ## 模拟流程
 
 - 更新碰撞点集合
@@ -137,6 +147,8 @@ void update_point(Vector3f origin) {
 }
 ```
 
+<br>
+
 - 作用重力
 
 ```c++
@@ -158,6 +170,8 @@ GetWorld()->OverlapMultiByChannel(
 ```
 
 OverlapMultiByChannel 函数检测当前物体与其他物体是否有碰撞
+
+<br>
 
 - 碰撞点获取
 
@@ -199,6 +213,8 @@ void cal_deepest_point(ActorProperty* actor_property,
 
 逻辑是，找到当前状态-z 轴方向最深的顶点，视为碰撞点
 
+<br>
+
 - warmstart
 
 ```c++
@@ -226,6 +242,8 @@ void warm_start() {
 }
 ```
 
+<br>
+
 - 用公式处理碰撞
 
 ```c++
@@ -249,6 +267,8 @@ cube_physics->resolve_collision();
 }
 ```
 
+<br>
+
 - 更新运动位置
 
 ```c++
@@ -257,6 +277,8 @@ cube_physics->update_actor_state();
 ```
 
 由上述计算得到了当前帧最新的速度信息，用这个速度更新当前帧的位置和朝向
+
+<br>
 
 - unreal 中展示
 
@@ -269,6 +291,8 @@ SetActorLocationAndRotation(location, quat.Rotator());
 ```
 
 转化为 unreal 中的数据结构并展示
+
+<br><br>
 
 ## 结果演示
 
