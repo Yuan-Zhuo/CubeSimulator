@@ -30,16 +30,17 @@ Simulate the motion of a cube after it hits the ground by impulse-based collisio
 
 根据当前的速度、碰撞点位置以及相对位置可以计算出冲量大小
 
-- 连续冲量 - [ErinCatto - UnderstandingConstraints_GDC2014](https://box2d.org/files/ErinCatto_UnderstandingConstraints_GDC2014.pdf)
-<center>
-    <div style="display:inline">
-        <img src="img/Sequential_Impulses.png" height="300">
-    </div>
-    <br>
-    <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
-        Sequential Impulses
-    </div>
-</center>
+- 连续冲量
+  - [ErinCatto - UnderstandingConstraints_GDC2014](https://box2d.org/files/ErinCatto_UnderstandingConstraints_GDC2014.pdf)
+  <center>
+      <div style="display:inline">
+          <img src="img/Sequential_Impulses.png" height="300">
+      </div>
+      <br>
+      <div style="color:orange; border-bottom: 1px solid #d9d9d9; display: inline-block; color: #999; padding: 2px;">
+          Sequential Impulses
+      </div>
+  </center>
 
 以碰撞点集合中碰撞点任意的顺序来对接触冲量进行求解，如果要一次性分析时间复杂度很高，用这种近似的方式可能有误差，因此多次迭代，最终可以趋近理想结果
 
